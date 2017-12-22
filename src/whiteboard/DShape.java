@@ -2,8 +2,9 @@ package whiteboard;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.util.ArrayList;
-public class DShape implements ModelListener {
+public class DShape implements ModelListener, Serializable {
 	DShapeModel shapeModel;
 	public DShape() {
 		shapeModel = new DShapeModel(0, 0, 0, 0, Color.gray,0);
@@ -64,12 +65,12 @@ public class DShape implements ModelListener {
 		knobs.add(new Rectangle(getX()+getWidth()-9,getY()+getHeight()-9,20,20)); //Bottom Right
 		return knobs;
 	}
-        public ArrayList<Rectangle> getLineKnobs(){
-            ArrayList<Rectangle> knobs = new ArrayList<Rectangle>();
-            knobs.add(new Rectangle(getX()-9, getY()-9, 18, 18));
-            knobs.add(new Rectangle(getWidth()-9, getHeight()-9, 18, 18));
-            return knobs;
-        }
+    public ArrayList<Rectangle> getLineKnobs(){
+        ArrayList<Rectangle> knobs = new ArrayList<Rectangle>();
+        knobs.add(new Rectangle(getX()-9, getY()-9, 18, 18));
+        knobs.add(new Rectangle(getWidth()-9, getHeight()-9, 18, 18));
+        return knobs;
+    }
         
 	@Override
 	public void ModelChanged(DShapeModel model) {

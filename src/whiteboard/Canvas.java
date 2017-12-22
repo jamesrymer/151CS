@@ -363,14 +363,14 @@ public class Canvas extends JPanel implements ModelListener {
                 int testPort = 12345;
 		ssChannel.socket().bind(new InetSocketAddress(port));
 		String obj ="textTextHello";
-		while (true) {
-			SocketChannel sChannel = ssChannel.accept();
-			ObjectOutputStream  oos = new ObjectOutputStream(sChannel.socket().getOutputStream());
-                        oos.writeObject(this.shapes);
-			oos.writeObject(obj);
-			oos.close();
-			System.out.println("Connection ended");
-		}
+		
+		SocketChannel sChannel = ssChannel.accept();
+		ObjectOutputStream  oos = new ObjectOutputStream(sChannel.socket().getOutputStream());
+                    oos.writeObject(this.shapes);
+		oos.writeObject(obj);
+		oos.close();
+		System.out.println("Connection ended");
+		
 	}
 
    public ArrayList<DShape> getCollection() {

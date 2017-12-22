@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 
 public class WhiteBoard extends JFrame {
 	Canvas canvas;
+	Boolean server;
         final WhiteBoard frame = this;
 	public static void main(String[] args) {
 		WhiteBoard frame = new WhiteBoard();
@@ -31,6 +32,7 @@ public class WhiteBoard extends JFrame {
 	}
 	public WhiteBoard() {
                 super("WhiteBoard Application");
+        this.server = false;
 		canvas = new Canvas();
                 this.setLayout(new GridLayout(1,2,10,3));
 		this.setBounds(500, 500, 1000, 400);
@@ -122,16 +124,16 @@ public class WhiteBoard extends JFrame {
 		JButton open = new JButton("Open");
 		JButton serverStart = new JButton("Server Start");
 		JButton clientStart = new JButton("Client  Start");
-                
-                JButton setColorButton = new JButton("Color");
-                Box colorBox = new Box(BoxLayout.X_AXIS);
-                colorBox.add(setColorButton);
+
+		JButton setColorButton = new JButton("Color");
+		Box colorBox = new Box(BoxLayout.X_AXIS);
+		colorBox.add(setColorButton);
 
 		setColorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
-                               if(canvas.getSelected() != null){
-                                   canvas.changeColor(JColorChooser.showDialog(null, "Pick a color", getForeground()));
-                               }
+				if(canvas.getSelected() != null){
+					canvas.changeColor(JColorChooser.showDialog(null, "Pick a color", getForeground()));
+				}
 			/*	Color initialColor = Color.GRAY; 
 				final JColorChooser chooser = new JColorChooser(initialColor);
 				JColorChooser.createDialog(
@@ -153,15 +155,15 @@ public class WhiteBoard extends JFrame {
                 
                 
 		JPanel mainPanel = new JPanel();
-                mainPanel.add(rect);
-                mainPanel.add(line);
-                mainPanel.add(oval);
-                mainPanel.add(colorBox);
-               // content.add(setColorButton);
-                mainPanel.add(textField);
-                mainPanel.add(text);
-                mainPanel.add(textBox);
-                mainPanel.add(delete);
+		mainPanel.add(rect);
+		mainPanel.add(line);
+		mainPanel.add(oval);
+		mainPanel.add(colorBox);
+		// content.add(setColorButton);
+		mainPanel.add(textField);
+		mainPanel.add(text);
+		mainPanel.add(textBox);
+		mainPanel.add(delete);
 		mainPanel.add(moveToFront);
 		mainPanel.add(moveToBack);
 		//stuff for save and open
@@ -185,6 +187,7 @@ public class WhiteBoard extends JFrame {
 		serverStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				canvas.serverStart();
+				System.out.println("you pressed server start!");
 			}
 		});
 		clientStart.addActionListener(new ActionListener() {
